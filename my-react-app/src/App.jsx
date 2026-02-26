@@ -4,9 +4,9 @@ import MainContent from "./components/layout/MainContent";
 
 function App() {
   return (
-    <div className="flex h-screen bg-[#f5f56fa]">
+    <div className="flex min-h-screen bg-[#f5f56fa] overflow-x-hidden">
       <Sidebar />
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col w-full">
         <Header />
        <MainContent /> 
       </div>

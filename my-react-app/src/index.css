@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
 body {
-  @apply bg-[#f5f6fa] font-sans;
+  /*Background color and font-family*/
+  @apply bg-[#f5f6fa] font-sans min-h-screen;
+}
+/*Global base overrides*/
+html{
+  /*Apply antialiased font rendering across the whole app*/
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button{
+  /*Remove default styles, let Tailwind control cursor*/
+  @apply cursor-pointer;
 }

@@ -1,17 +1,24 @@
-const MetricCard = ({title, value, change, color}) => {
+export default function MetricCard ({icon, bg, label, value, change, up}) {
     return (
-        <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm">
-            <div className="flex justify-between items-center mb-4">
-                <div className={`w-10 h-10 rounded-lg ${color}`}></div>
-                <span className={`text-sm ${change.includes ('-') ? 'text-red-500' : 'text-green-500'}`}>
-                {change}
+        <div className="bg-white rounded-2xl p-4 flex flex-col gap-2"
+        style={{ boxShadow:"0 1px 4px rgba(0,0,0,0.7)" }}>
+            {/*Icon + change row*/}
+            <div className="flex items-center justify-between">
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+            style={{backgroundColor:bg}}
+            >
+                {/*icon*/}
+                </div>
+                <span className={`text-xs font-semibold ${up ? "text-green-500" : "text-red-500"}`}>
+                {up ? "▲" : "▼" } {change}
                 </span>
-            </div>
-            <h2 className="text-xl sm:text-2xl font-bold">{value}</h2>
-            <p className="text-gray-400 text-sm mt-1">{title}</p>
-        </div>
+                </div>
 
+               {/*Price*/}
+                <p className="text-2xl font-bold text-gray-800">{value}</p>
+
+                {/*Coin lable*/}
+                <p className="text-xs text-gray-400">{lable}</p>
+                </div>
     );
-};
-
-export default MetricCard;
+}

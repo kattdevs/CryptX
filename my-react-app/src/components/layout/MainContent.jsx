@@ -1,3 +1,4 @@
+import Header from "./Header"
 import MetricCard from "../ui/MetricCard";
 import ChartVisual from "../ui/ChartVisual";
 import LiveMarket from "../ui/LiveMarket";
@@ -10,7 +11,7 @@ export default function MainContent() {
         <main className="md:ml-36 flex-1 flex flex-col min-h-screen bg-gray-50">
 
             {/*Top navigation bar*/}
-            <Header />
+            {/*<Header />*/}
 
             {/*Dashboard content with padding*/}
             <div className="p-5 flex-col gap-5">

@@ -1,7 +1,7 @@
 /**Top navigation bar that sticks to the top of the main content area**/
 export default function Header() {
   return (
-        <header className="felx-items-center justify between bg-gray-50 px-6 py-3 sticky top-0 z-10">
+        <header className="flex-items-center justify-between bg-gray-50 px-6 py-3 sticky top-0 z-10">
 
         {/*Search bar*/}
         <div className="flex items-center gap-2 bg-white rounded-xl px-3 py-2 shadow-sm w-52">
@@ -10,7 +10,7 @@ export default function Header() {
         <span className="text-gray-400 text-sm">🔍</span>
 
         {/*Text input*/}
-        <input type="text" className="text-xs text-gray-400 bg-transparent outline-non" placeholder="Search type of keywords" readOnly/></div>
+        <input type="text" className="text-xs text-gray-400 bg-transparent outline-none" placeholder="Search type of keywords" readOnly/></div>
 
         {/*Right-side icon cluster*/}
         <div className="flex items-center gap-4">

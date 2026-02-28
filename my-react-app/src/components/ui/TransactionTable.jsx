@@ -1,4 +1,4 @@
-import transactions from "../../data/transactionData"
+import {transactions} from "../../data/transactionData"
 
 const TransactionTable = () => {
     return (

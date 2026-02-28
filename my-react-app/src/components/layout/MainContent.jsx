@@ -1,6 +1,6 @@
 import MetricCard from "../ui/MetricCard";
 import ChartVisual from "../ui/ChartVisual";
-import LiveMarket from "../../data/transactionData";
+import LiveMarket from "../ui/LiveMarket";
 import TransactionTable from "../ui/TransactionTable";
 import { metricCards } from "../../data/chartStaticData";
 

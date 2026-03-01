@@ -1,5 +1,5 @@
 /*SVG path string for BTC price line*/
-export const btcLinePath =
+export const btcLinepath =
 "M0, 130 C20, 120 40, 100 60, 110 C80, 120 100, 80 130, 85 130, 85 C160, 90 170, 60 190, 65 C210, 70 230, 40 255, 50 C270, 56 290, 30 320,20"
 
 /**Position of the interactive dot and tooltip on the chart*/

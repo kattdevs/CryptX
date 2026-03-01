@@ -1,57 +1,74 @@
-/**Live market panel in the bottom-left of the dashboard */
-import {liveMarket} from "../../data/transactionData";
+
+import { liveMarket } from "../../data/transactionData";
 import SparkLine from "./SparkLine";
 
-/** coin icon styles mapped by name*/
-const coinStyle = {
-   Ethereum: {bg:"#ede9fe", color:"#7c3aed", symbol:"Ξ"},
-   Bitcoin: {bg:"#fef9c3", color:"#d97706", symbol:"₿"},
-   Litecoin: {bg:"#dbeafe", color:"#2563eb", symbol:"Ł"},
-   Cardano: {bg:"#dcfce7", color:"#16a34a", symbol:"₳"},
+// Circular coin icons with border matching Figma style
+const CoinCircle = ({ name }) => {
+  const styles = {
+    Ethereum: { bg: "#f5f3ff", border: "#ddd6fe", color: "#7c3aed" },
+    Bitcoin:  { bg: "#fffbeb", border: "#fde68a", color: "#d97706" },
+    Litecoin: { bg: "#eff6ff", border: "#bfdbfe", color: "#2563eb" },
+    Cardano:  { bg: "#f0fdf4", border: "#bbf7d0", color: "#16a34a" },
+  };
+  const s = styles[name] ?? { bg: "#f9fafb", border: "#e5e7eb", color: "#6b7280" };
+  const symbols = { Ethereum: "Ξ", Bitcoin: "₿", Litecoin: "Ł", Cardano: "₳" };
+
+  return (
+    <div style={{
+      width: "40px", height: "40px", borderRadius: "50%",
+      backgroundColor: s.bg,
+      border: `1.5px solid ${s.border}`,
+      display: "flex", alignItems: "center", justifyContent: "center",
+      color: s.color, fontSize: "16px", fontWeight: 700,
+      fontFamily: "serif", flexShrink: 0,
+    }}>
+      {symbols[name]}
+    </div>
+  );
 };
 
 export default function LiveMarket() {
-    return(
-        <div className="bg-white rounded-2xl p-4" style={{boxShadow:"0 1px 4px rgba(0,0,0,0.7)"}}>
-            <h3 className=" text-sm font-semibold text-gray-800 mb-3">Live Market</h3>
-            <div className="flex flex-col gap-3">
-                {liveMarket.map((item) => {
-                    const s = coinStyle[item.name] ?? { bg: "#f3f4f6", color:"#6b7280", symbol:"?"};
+  return (
+    <div style={{
+      backgroundColor: "#fff",
+      borderRadius: "16px",
+      padding: "20px",
+      boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
+    }}>
+      <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1f2937", margin: "0 0 16px 0" }}>
+        Live Market
+      </h3>
 
-                    return (
-                        <div key={`${item.name}-${item.pair}`} className="flex items-center gap-3">
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        {liveMarket.map((item) => (
+          <div key={`${item.name}-${item.pair}`} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <CoinCircle name={item.name} />
 
-                         {/*Coin icon*/}  
-                         <div className="-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
-                            style={{backgroundColor: s.bg, color: s.color}}
-                            >
-                            {s.symbol}
-                            </div>
+            {/* Name + pair */}
+            <div style={{ width: "90px" }}>
+              <p style={{ fontSize: "13px", fontWeight: 600, color: "#1f2937", margin: 0 }}>{item.name}</p>
+              <p style={{ fontSize: "11px", color: "#9ca3af", margin: 0 }}>{item.pair}</p>
+            </div>
 
-                            {/*Coin name + trending pair*/}
-                            <div className="flex-1 min-w-0">
-                                <p className="text-xs font-semibold text-gray-800">{item.name}</p>
-                                <p className="text-xs text-gray-400">{item.pair}</p>
-                            </div>
+            {/* Change */}
+            <div style={{ width: "70px" }}>
+              <p style={{ fontSize: "10px", color: "#9ca3af", margin: 0 }}>Change</p>
+              <p style={{ fontSize: "12px", fontWeight: 600, color: item.up ? "#22c55e" : "#ef4444", margin: 0 }}>
+                {item.change}
+              </p>
+            </div>
 
-                            {/*24h Change*/}
-                            <div className="text-right" style={{minWidth: "60px"}}>
-                                <p className="text-xs text-gray-400">Change</p>
-                                <p className={`text-xs font-semibold ${item.up ? "text-green-500" : "text-red-500"}`}>{item.change}</p>
-                                </div>
+            {/* Price */}
+            <div style={{ width: "85px" }}>
+              <p style={{ fontSize: "10px", color: "#9ca3af", margin: 0 }}>Price</p>
+              <p style={{ fontSize: "12px", fontWeight: 600, color: "#374151", margin: 0 }}>{item.price}</p>
+            </div>
 
-                                {/*Price*/}
-                                <div className="text-right" style={{midWidth:"80px"}}>
-                                    <p className="text-xs text-gray-400">rice</p>
-                                    <p className="text-xs font-semibold text-gray-700">{item.price}</p>
-                                    </div>
-
-                                {/*SparkLine mini-chart*/}
-                                <SparkLine path={item.path} color={item.color} />
-                                </div>
-                                );
-                })}
-                </div>
-                </div>
-    );
+            {/* Sparkline */}
+            <SparkLine path={item.path} color={item.color} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }

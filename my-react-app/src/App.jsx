@@ -1,16 +1,16 @@
 import Sidebar from "./components/layout/Sidebar";
 import MainContent from "./components/layout/MainContent";
 
- export default function App() {
+export default function App() {
   return (
-    /*Full-height flex row*/
-    <div className="flex min-h-screen bg-gray-50 font-sans">
-
-      {/*Left Sidebar*/}
+    <div style={{
+      display: "flex",
+      minHeight: "100vh",
+      backgroundColor: "#f5f6fa",
+      fontFamily: "ui-sans-serif, system-ui, -apple-system, sans-serif",
+    }}>
       <Sidebar />
-
-      {/*Scrollable main content column*/}
-       <MainContent /> 
-      </div>
+      <MainContent />
+    </div>
   );
 }

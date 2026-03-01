@@ -1,19 +1,16 @@
 @import "tailwindcss";
 
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
-  /*Background color and font-family*/
+  margin: 0;
+  padding: 0;
   background-color: #f5f6fa;
-  font-family: ui-sans-serif, system-ui, sans-serif;
-  min-height: 100vh;
-}
-/*Global base overrides*/
-html{
-  /*Apply antialiased font rendering across the whole app*/
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-button{
-  /*Remove default styles, let Tailwind control cursor*/
-  cursor: pointer;
-}
+button { cursor: pointer; }
+input, button { font-family: inherit; }
+p { margin: 0; }

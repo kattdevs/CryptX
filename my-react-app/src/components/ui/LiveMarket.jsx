@@ -16,7 +16,7 @@ export default function LiveMarket() {
             <h3 className=" text-sm font-semibold text-gray-800 mb-3">Live Market</h3>
             <div className="flex flex-col gap-3">
                 {liveMarket.map((item) => {
-                    const style = coinStyle[item.name] ?? { bg: "#f3f4f6", color:"#6b7280", symbol:"?"};
+                    const s = coinStyle[item.name] ?? { bg: "#f3f4f6", color:"#6b7280", symbol:"?"};
 
                     return (
                         <div key={`${item.name}-${item.pair}`} className="flex items-center gap-3">

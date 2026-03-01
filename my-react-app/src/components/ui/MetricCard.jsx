@@ -18,7 +18,7 @@ export default function MetricCard ({icon, bg, label, value, change, up}) {
                 <p className="text-2xl font-bold text-gray-800">{value}</p>
 
                 {/*Coin lable*/}
-                <p className="text-xs text-gray-400">{lable}</p>
+                <p className="text-xs text-gray-400">{label}</p>
                 </div>
     );
 }

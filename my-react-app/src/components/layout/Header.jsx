@@ -1,50 +1,103 @@
-/**Top navigation bar that sticks to the top of the main content area**/
+/**
+ * Header.jsx
+ * ----------
+ * Sticky top bar sitting inside the main content column (right of sidebar).
+ * Left:  search input with magnifier icon
+ * Right: bell icon | help circle | avatar + name/handle
+ */
+
 export default function Header() {
   return (
-    <header className=" sticky top-0 z-10 flex items-center justify-between px-6 py-3 bg-[#f5f6fa]">
-      {/*Search bar*/}
-      <div
-        className="flex items-center gap-2 bg-white rounded-xl px-3 py-2 w-52"
-        style={{ boxShadow: "0 1px 4px rgba (0,0,0,0.8)" }}
-      >
-        <span className="text-gray-400 text-sm">🔍</span>
+    <header style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "14px 24px",
+      backgroundColor: "#f5f6fa",
+      position: "sticky",
+      top: 0,
+      zIndex: 40,
+    }}>
+
+      {/* Search bar */}
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        backgroundColor: "#fff",
+        borderRadius: 12,
+        padding: "9px 14px",
+        width: 240,
+        boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
+      }}>
+        <svg width="13" height="13" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
         <input
-          type="text"
-          className="text-xs text-gray-400 bg-transparent outline-none"
           placeholder="Search type of keywords"
           readOnly
+          style={{
+            fontSize: 12,
+            color: "#9ca3af",
+            background: "transparent",
+            border: "none",
+            outline: "none",
+            width: "100%",
+            fontFamily: "inherit",
+          }}
         />
       </div>
 
-      {/*Right-side icon cluster*/}
-      <div className="flex items-center gap-4">
-        {/*Notification bell*/}
-        <button
-          className="text-gray-400 hover:text-gray-600 text-lg bg-transparent border-0"
-          aria-label="Notifications"
-        >
-          🔔
+      {/* Right cluster */}
+      <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+
+        {/* Bell */}
+        <button style={{ background: "none", border: "none", cursor: "pointer", color: "#9ca3af", display: "flex", alignItems: "center" }}>
+          <svg width="19" height="19" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
         </button>
 
-        {/*Help icon*/}
-        <button className="flex items-center justify-center w-6 h-6 rounded-full border border-gray-300 text-gray-400 text-xs font-bold bg-transparent hover:text-gray-600">
-          ?
-        </button>
+        {/* Help circle */}
+        <button style={{
+          background: "none",
+          border: "1.5px solid #d1d5db",
+          borderRadius: "50%",
+          width: 26, height: 26,
+          fontSize: 12,
+          fontWeight: 600,
+          color: "#9ca3af",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "inherit",
+        }}>?</button>
 
-        {/*User avatar +name block*/}
-        <div className="flex items-center gap-2">
-          <div
-            className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
-            style={{ background: "linear-gradient(135deg, #9ca3af, #4b5563)" }}
-          >
-            L
-          </div>
+        {/* Avatar + name */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{
+            width: 36, height: 36,
+            borderRadius: "50%",
+            background: "linear-gradient(135deg, #a78bfa, #6366f1)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#fff",
+            fontSize: 14,
+            fontWeight: 700,
+            flexShrink: 0,
+          }}>L</div>
           <div>
-            <p className="text-xs font-semibold text-gray-700 leading-tight">
-              Laurice
-            </p>
-            <p className="text-xs text-gray-400 leading-tight">@laurice22</p>
+            <p style={{ fontSize: 12.5, fontWeight: 600, color: "#111827", margin: 0, lineHeight: 1.4 }}>Laurice</p>
+            <p style={{ fontSize: 11, color: "#9ca3af", margin: 0, lineHeight: 1.4 }}>@laurice22</p>
           </div>
+          {/* Dropdown caret */}
+          <svg width="12" height="12" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
         </div>
       </div>
     </header>

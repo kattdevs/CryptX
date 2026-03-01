@@ -1,67 +1,87 @@
+/**
+ * LiveMarket.jsx
+ * --------------
+ * Bottom-left panel. Renders liveMarket[] array from transactionData.js.
+ * Each row: bordered circle icon | name + pair | Change col | Price col | Sparkline
+ */
 
 import { liveMarket } from "../../data/transactionData";
 import SparkLine from "./SparkLine";
 
-// Circular coin icons with border matching Figma style
-const CoinCircle = ({ name }) => {
-  const styles = {
-    Ethereum: { bg: "#f5f3ff", border: "#ddd6fe", color: "#7c3aed" },
-    Bitcoin:  { bg: "#fffbeb", border: "#fde68a", color: "#d97706" },
-    Litecoin: { bg: "#eff6ff", border: "#bfdbfe", color: "#2563eb" },
-    Cardano:  { bg: "#f0fdf4", border: "#bbf7d0", color: "#16a34a" },
-  };
-  const s = styles[name] ?? { bg: "#f9fafb", border: "#e5e7eb", color: "#6b7280" };
-  const symbols = { Ethereum: "Ξ", Bitcoin: "₿", Litecoin: "Ł", Cardano: "₳" };
+// Coin circle style map — bg fill, border color, text color, symbol
+const COIN = {
+  Ethereum: { bg: "#f5f3ff", border: "#c4b5fd", color: "#7c3aed", symbol: "Ξ" },
+  Bitcoin:  { bg: "#fffbeb", border: "#fcd34d", color: "#d97706", symbol: "₿" },
+  Litecoin: { bg: "#eff6ff", border: "#93c5fd", color: "#2563eb", symbol: "Ł" },
+  Cardano:  { bg: "#f0fdf4", border: "#86efac", color: "#16a34a", symbol: "₳" },
+};
 
+function CoinCircle({ name }) {
+  const c = COIN[name] ?? { bg: "#f3f4f6", border: "#e5e7eb", color: "#6b7280", symbol: "?" };
   return (
     <div style={{
-      width: "40px", height: "40px", borderRadius: "50%",
-      backgroundColor: s.bg,
-      border: `1.5px solid ${s.border}`,
-      display: "flex", alignItems: "center", justifyContent: "center",
-      color: s.color, fontSize: "16px", fontWeight: 700,
-      fontFamily: "serif", flexShrink: 0,
+      width: 38, height: 38,
+      borderRadius: "50%",
+      backgroundColor: c.bg,
+      border: `1.5px solid ${c.border}`,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: c.color,
+      fontSize: 15,
+      fontWeight: 700,
+      fontFamily: "serif",
+      flexShrink: 0,
     }}>
-      {symbols[name]}
+      {c.symbol}
     </div>
   );
-};
+}
 
 export default function LiveMarket() {
   return (
     <div style={{
       backgroundColor: "#fff",
-      borderRadius: "16px",
-      padding: "20px",
-      boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
+      borderRadius: 16,
+      padding: "18px 20px",
+      boxShadow: "0 1px 6px rgba(0,0,0,0.07)",
     }}>
-      <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1f2937", margin: "0 0 16px 0" }}>
+      {/* Panel title */}
+      <p style={{ fontSize: 15, fontWeight: 700, color: "#111827", margin: "0 0 16px 0" }}>
         Live Market
-      </h3>
+      </p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      {/* Rows */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
         {liveMarket.map((item) => (
-          <div key={`${item.name}-${item.pair}`} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <div key={item.name} style={{ display: "flex", alignItems: "center", gap: 12 }}>
+
+            {/* Coin circle */}
             <CoinCircle name={item.name} />
 
             {/* Name + pair */}
-            <div style={{ width: "90px" }}>
-              <p style={{ fontSize: "13px", fontWeight: 600, color: "#1f2937", margin: 0 }}>{item.name}</p>
-              <p style={{ fontSize: "11px", color: "#9ca3af", margin: 0 }}>{item.pair}</p>
+            <div style={{ minWidth: 90, flex: 1 }}>
+              <p style={{ fontSize: 12.5, fontWeight: 600, color: "#111827", margin: 0 }}>{item.name}</p>
+              <p style={{ fontSize: 10.5, color: "#9ca3af", margin: 0 }}>{item.pair}</p>
             </div>
 
             {/* Change */}
-            <div style={{ width: "70px" }}>
-              <p style={{ fontSize: "10px", color: "#9ca3af", margin: 0 }}>Change</p>
-              <p style={{ fontSize: "12px", fontWeight: 600, color: item.up ? "#22c55e" : "#ef4444", margin: 0 }}>
+            <div style={{ minWidth: 64 }}>
+              <p style={{ fontSize: 10, color: "#9ca3af", margin: 0 }}>Change</p>
+              <p style={{
+                fontSize: 12,
+                fontWeight: 600,
+                color: item.up ? "#22c55e" : "#ef4444",
+                margin: 0,
+              }}>
                 {item.change}
               </p>
             </div>
 
             {/* Price */}
-            <div style={{ width: "85px" }}>
-              <p style={{ fontSize: "10px", color: "#9ca3af", margin: 0 }}>Price</p>
-              <p style={{ fontSize: "12px", fontWeight: 600, color: "#374151", margin: 0 }}>{item.price}</p>
+            <div style={{ minWidth: 84 }}>
+              <p style={{ fontSize: 10, color: "#9ca3af", margin: 0 }}>Price</p>
+              <p style={{ fontSize: 12, fontWeight: 600, color: "#374151", margin: 0 }}>{item.price}</p>
             </div>
 
             {/* Sparkline */}

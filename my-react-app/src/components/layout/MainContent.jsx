@@ -11,11 +11,11 @@ export default function MainContent() {
       {/* Responsive styles */}
       <style>{`
         .main-content {
-          margin-left: 148px;
-          width: calc (100% - 148px);
+          flex:1;
           display: flex;
           flex-direction: column;
           min-height: 100vh;
+          min-width: 0;
           background-color: #f5f6fa;
           overflow-x: hidden;
         }
@@ -56,24 +56,25 @@ export default function MainContent() {
 
         /* Mobile */
         @media (max-width: 767px) {
-          .main-content { 
-          margin-left: 0;
-          width:100%; 
-          }
           .dash-body{
           padding:12px;
           padding-top:56px;
-          }
-          .top-grid{
-          grid-template-columns: 1fr; 
-          }
-          .metric-grid {
-          grid-template-columns:1fr 1fr;
-          }
-          .bottom-grid{
-          grid-template-columns:1fr
-          }
       }
+            .top-grid{
+            grid-template-columns: 1fr;
+      }
+            .metric-grid {
+            grid-template-columns:1fr 1fr;
+      }
+            .bottom-grid{
+            grid-template-columns:1fr
+      }
+        }
+         @media (max-width: 479px) {
+            .metric-grid {
+            grid-template-columns:1fr;
+      }
+        }
         `}</style>
 
       <main className="main-content">

@@ -48,19 +48,25 @@ export default function Sidebar() {
   return (
     <>
       <style>{`
+        /* Fixed sidebar — always on top, doesn't affect flow */
         .sidebar {
+          position: fixed;
+          top: 0; left: 0; bottom: 0;
           width: 148px;
-          min-height: 100vh;
           background: #fff;
           box-shadow: 2px 0 12px rgba(0,0,0,0.06);
           padding: 24px 12px;
-          position: fixed;
-          left: 0; top: 0; bottom: 0;
           z-index: 50;
           display: flex;
           flex-direction: column;
+        }
+
+        /* Spacer that the App.jsx renders is hidden on mobile */
+        .sidebar-spacer {
+          width: 148px;
           flex-shrink: 0;
         }
+
         .hamburger {
           display: none;
           position: fixed;
@@ -72,6 +78,8 @@ export default function Sidebar() {
           padding: 8px;
           box-shadow: 0 2px 8px rgba(0,0,0,0.12);
           cursor: pointer;
+          align-items: center;
+          justify-content: center;
         }
         .drawer-overlay {
           position: fixed; inset: 0;
@@ -96,11 +104,12 @@ export default function Sidebar() {
 
         @media (max-width: 767px) {
           .sidebar { display: none; }
-          .hamburger { display: flex; align-items: center; justify-content: center; }
+          .sidebar-spacer { display: none; }
+          .hamburger { display: flex; }
         }
       `}</style>
 
-      {/* Desktop */}
+      {/* Fixed desktop sidebar */}
       <aside className="sidebar">
         <div style={{ marginBottom: 32, paddingLeft: 4 }}><Logo /></div>
         <NavList onClose={() => {}} />
@@ -115,7 +124,6 @@ export default function Sidebar() {
         </svg>
       </button>
 
-      {/* Mobile drawer */}
       {open && <div className="drawer-overlay" onClick={() => setOpen(false)} />}
       <div className={`drawer ${open ? "open" : ""}`}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>

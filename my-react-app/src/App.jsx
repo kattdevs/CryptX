@@ -10,7 +10,6 @@ export default function App() {
       width: "100%",
       backgroundColor: "#f5f6fa",
       fontFamily: "ui-sans-serif, system-ui, -apple-system, sans-serif",
-      position: "relative",
     }}>
       <Sidebar />
       <MainContent />

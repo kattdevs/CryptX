@@ -1,16 +1,3 @@
-/**
- * MainContent.jsx
- * ---------------
- * Right-hand scrollable column. Offset by sidebar width.
- * 
- * Responsive breakpoints:
- *   Mobile  (<768px)  : single column, sidebar hidden
- *   Tablet  (768px+)  : sidebar visible, metric cards 2-col, bottom panels stack
- *   Desktop (1024px+) : full 3-col top row, 2-col bottom row
- *
- * Uses a <style> tag for media queries since we're using inline styles.
- */
-
 import Header from "./Header";
 import MetricCard from "../ui/MetricCard";
 import ChartVisual from "../ui/ChartVisual";

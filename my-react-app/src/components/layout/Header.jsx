@@ -1,11 +1,3 @@
-/**
- * Header.jsx
- * ----------
- * Sticky top bar sitting inside the main content column (right of sidebar).
- * Left:  search input with magnifier icon
- * Right: bell icon | help circle | avatar + name/handle
- */
-
 export default function Header() {
   return (
     <header style={{

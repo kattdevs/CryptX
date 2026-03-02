@@ -1,11 +1,3 @@
-/**
- * Sidebar.jsx
- * Fixed left navigation panel. White background, subtle shadow.
- * Logo: infinity-loop SVG + "CryptX" wordmark.
- * Nav items use outline SVG icons. Only "Overview" is active (indigo tint + dot).
- * Responsive: hidden on mobile, visible md+.
- */
-
 const NAV = [
   {
     label: "Overview",

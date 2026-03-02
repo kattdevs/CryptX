@@ -1,10 +1,3 @@
-/**
- * LiveMarket.jsx
- * --------------
- * Bottom-left panel. Renders liveMarket[] array from transactionData.js.
- * Each row: bordered circle icon | name + pair | Change col | Price col | Sparkline
- */
-
 import { liveMarket } from "../../data/transactionData";
 import SparkLine from "./SparkLine";
 

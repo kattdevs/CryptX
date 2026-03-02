@@ -1,16 +1,3 @@
-/**
- * MetricCard.jsx
- * --------------
- * Displays one crypto coin stat.
- * Props: id (coin key), bg (hex), label, value, change, up (bool)
- *
- * Coin icons are inline SVGs matched to the Figma designs:
- *   BTC → bold B with serifs on orange
- *   ETH → Ethereum diamond on purple  
- *   LTC → L-strike on blue
- *   ADA → starburst dots on green
- */
-
 const ICONS = {
   BTC: (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="white">

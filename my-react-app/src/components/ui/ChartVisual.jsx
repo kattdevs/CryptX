@@ -1,14 +1,3 @@
-/**
- * ChartVisual.jsx
- * ---------------
- * SVG BTC price chart. No external libraries.
- * - Wave line starts ~$550 Jan, peaks ~$700 Mar, dips May (dot + tooltip),
- *   dips Jul, rises steeply to ~$750 Nov.
- * - Vertical lavender highlight bar below dot.
- * - Y-axis: $800→0, X-axis: Jan→Nov.
- * - Horizontal baseline rule at y=0.
- */
-
 import { btcLinePath, btcDot, btcXLabels, btcYLabels } from "../../data/chartStaticData";
 
 export default function ChartVisual() {

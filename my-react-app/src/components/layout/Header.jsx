@@ -40,7 +40,6 @@ export default function Header() {
         backgroundColor: "#fff",
         borderRadius: 12,
         padding: "9px 14px",
-        width: 240,
         boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
       }}>
         <svg width="13" height="13" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24">
@@ -103,7 +102,7 @@ export default function Header() {
             fontWeight: 700,
             flexShrink: 0,
           }}>L</div>
-          <div>
+          <div className="header-username">
             <p style={{ fontSize: 12.5, fontWeight: 600, color: "#111827", margin: 0, lineHeight: 1.4 }}>Laurice</p>
             <p style={{ fontSize: 11, color: "#9ca3af", margin: 0, lineHeight: 1.4 }}>@laurice22</p>
           </div>

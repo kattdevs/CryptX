@@ -12,34 +12,34 @@ export default function MainContent() {
       <style>{`
         .main-content {
           margin-left: 148px;
-          flex: 1;
+          width: calc (100% - 148px);
           display: flex;
           flex-direction: column;
           min-height: 100vh;
           background-color: #f5f6fa;
+          overflow-x: hidden;
         }
         .dashboard-padding {
           padding: 18px 20px;
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 14px;
+          width:100%;
+          box-sizing:border-box;
         }
         /* Top row: metric cards (2/3) + chart (1/3) */
         .top-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-columns: 2fr 1fr;
           gap: 14px;
           align-items: stretch;
         }
         .metric-grid {
-          grid-column: span 2;
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 14px;
         }
-        .chart-col {
-          grid-column: span 1;
-        }
+        
         /* Bottom row: live market + transactions */
         .bottom-grid {
           display: grid;
@@ -47,28 +47,38 @@ export default function MainContent() {
           gap: 14px;
         }
 
-        /* Tablet — hide sidebar, adjust margin */
+        /* Tablet 768-1023px: chart drops below cards */
         @media (max-width: 1023px) {
-          .main-content { margin-left: 148px; }
-          .top-grid { grid-template-columns: 1fr 1fr; }
-          .metric-grid { grid-column: span 2; }
-          .chart-col { grid-column: span 2; }
+          .top-grid { 
+          grid-template-columns: 1fr; 
+          }
         }
 
         /* Mobile */
         @media (max-width: 767px) {
-          .main-content { margin-left: 0; }
-          .top-grid { grid-template-columns: 1fr; }
-          .metric-grid { grid-column: span 1; grid-template-columns: 1fr 1fr; }
-          .chart-col { grid-column: span 1; }
-          .bottom-grid { grid-template-columns: 1fr; }
-          .dashboard-padding { padding: 12px; }
-        }
-      `}</style>
+          .main-content { 
+          margin-left: 0;
+          width:100%; 
+          }
+          .dash-body{
+          padding:12px;
+          padding-top:56px;
+          }
+          .top-grid{
+          grid-template-columns: 1fr; 
+          }
+          .metric-grid {
+          grid-template-columns:1fr 1fr;
+          }
+          .bottom-grid{
+          grid-template-columns:1fr
+          }
+      }
+        `}</style>
 
       <main className="main-content">
         <Header />
-        <div className="dashboard-padding">
+        <div className="dash-body">
 
           {/* Top row  */}
           <div className="top-grid">
@@ -78,13 +88,11 @@ export default function MainContent() {
               {metricCards.map((card) => (
                 <MetricCard key={card.id} {...card} />
               ))}
-            </div>
+              </div>
 
             {/* BTC chart */}
-            <div className="chart-col">
               <ChartVisual />
             </div>
-          </div>
 
           {/* Bottom row  */}
           <div className="bottom-grid">

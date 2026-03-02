@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 const NAV = [
@@ -48,22 +49,21 @@ export default function Sidebar() {
   return (
     <>
       <style>{`
-        /* Fixed sidebar — always on top, doesn't affect flow */
+        /* Sticky sidebar — stays in document flow, scrolls with page then sticks */
         .sidebar {
-          position: fixed;
-          top: 0; left: 0; bottom: 0;
           width: 148px;
+          min-width: 148px;
+          min-height: 100vh;
+          height: 100vh;
           background: #fff;
           box-shadow: 2px 0 12px rgba(0,0,0,0.06);
           padding: 24px 12px;
+          position: sticky;
+          top: 0;
+          align-self: flex-start;
           z-index: 50;
           display: flex;
           flex-direction: column;
-        }
-
-        /* Spacer that the App.jsx renders is hidden on mobile */
-        .sidebar-spacer {
-          width: 148px;
           flex-shrink: 0;
         }
 
@@ -81,11 +81,13 @@ export default function Sidebar() {
           align-items: center;
           justify-content: center;
         }
+
         .drawer-overlay {
           position: fixed; inset: 0;
           background: rgba(0,0,0,0.35);
           z-index: 60;
         }
+
         .drawer {
           position: fixed;
           top: 0; left: 0; bottom: 0;
@@ -102,20 +104,20 @@ export default function Sidebar() {
         }
         .drawer.open { transform: translateX(0); }
 
+        /* Mobile — hide sidebar, show hamburger */
         @media (max-width: 767px) {
           .sidebar { display: none; }
-          .sidebar-spacer { display: none; }
           .hamburger { display: flex; }
         }
       `}</style>
 
-      {/* Fixed desktop sidebar */}
+      {/* Desktop sticky sidebar — stays in flow so no overlap */}
       <aside className="sidebar">
         <div style={{ marginBottom: 32, paddingLeft: 4 }}><Logo /></div>
         <NavList onClose={() => {}} />
       </aside>
 
-      {/* Mobile hamburger */}
+      {/* Mobile hamburger button */}
       <button className="hamburger" onClick={() => setOpen(true)}>
         <svg width="20" height="20" fill="none" stroke="#374151" strokeWidth="2" viewBox="0 0 24 24">
           <line x1="3" y1="6" x2="21" y2="6"/>
@@ -124,6 +126,7 @@ export default function Sidebar() {
         </svg>
       </button>
 
+      {/* Mobile drawer */}
       {open && <div className="drawer-overlay" onClick={() => setOpen(false)} />}
       <div className={`drawer ${open ? "open" : ""}`}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>

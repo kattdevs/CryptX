@@ -1,6 +1,24 @@
 export default function Header() {
   return (
-    <header style={{
+    <>
+    <style>{`
+      .header-search {width:240px;}
+      .header-username {display:block;}
+
+      @media (max-width: 767px) {
+      .header-root {padding-left: 56px !important;}
+      .header-search {width:160px;}
+    }
+      @media (max-width: 479px) {
+      .header-search {width:120px;}
+      .header-username {display:none;}
+    }
+    `}</style>
+
+
+    <header 
+    className="header-root"
+    style={{
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
@@ -9,10 +27,13 @@ export default function Header() {
       position: "sticky",
       top: 0,
       zIndex: 40,
-    }}>
+    }}
+    >
 
       {/* Search bar */}
-      <div style={{
+      <div 
+      className="header-search"
+      style={{
         display: "flex",
         alignItems: "center",
         gap: 8,
@@ -42,10 +63,10 @@ export default function Header() {
       </div>
 
       {/* Right cluster */}
-      <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
 
         {/* Bell */}
-        <button style={{ background: "none", border: "none", cursor: "pointer", color: "#9ca3af", display: "flex", alignItems: "center" }}>
+        <button style={{ background: "none", border: "none", cursor: "pointer", color: "#9ca3af", display: "flex" }}>
           <svg width="19" height="19" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
             <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
@@ -69,7 +90,7 @@ export default function Header() {
         }}>?</button>
 
         {/* Avatar + name */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <div style={{
             width: 36, height: 36,
             borderRadius: "50%",
@@ -87,11 +108,12 @@ export default function Header() {
             <p style={{ fontSize: 11, color: "#9ca3af", margin: 0, lineHeight: 1.4 }}>@laurice22</p>
           </div>
           {/* Dropdown caret */}
-          <svg width="12" height="12" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24">
+          <svg width="12" height="12" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24" style={{flexShrink:0}}>
             <path d="m6 9 6 6 6-6"/>
           </svg>
         </div>
       </div>
     </header>
+    </>
   );
 }
